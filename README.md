@@ -1,10 +1,10 @@
-# uhostserver-cookbook
+# uhostapi-cookbook
 
-TODO: Enter the cookbook description here.
+Installs uhostserver onto a server.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+ubuntu 14.04
 
 ## Attributes
 
@@ -16,35 +16,38 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['uhostserver']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['uhostappserver']['nginx']['certificate']</tt></td>
+    <td>String</td>
+    <td>Certificate for nginx</td>
+    <td><tt>api.getuhost.org</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['uhostappserver']['senderaddress']</tt></td>
+    <td>String</td>
+    <td>Config senderaddress</td>
+    <td><tt>api@getuhost.org</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['uhostappserver']['domainname']</tt></td>
+    <td>String</td>
+    <td>Config domainname</td>
+    <td><tt>getuhost.org</tt></td>
   </tr>
 </table>
 
 ## Usage
 
-### uhostserver::default
+### uhostapi::default
 
-Include `uhostserver` in your node's `run_list`:
+Include `uhostappserver` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[uhostserver::default]"
+    "recipe[uhostappserver::default]"
   ]
 }
 ```
-
-## Contributing
-
-1. Fork the repository on Github
-2. Create a named feature branch (i.e. `add-new-recipe`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request
 
 ## Testing
 
@@ -73,6 +76,15 @@ kitchen verify
 ## Development
 
 kitchen converge 
+
+## Contributing
+
+1. Fork the repository on Github
+2. Create a named feature branch (i.e. `add-new-recipe`)
+3. Write you change
+4. Write tests for your change (if applicable)
+5. Run the tests, ensuring they all pass
+6. Submit a Pull Request
 
 
 ## License and Authors

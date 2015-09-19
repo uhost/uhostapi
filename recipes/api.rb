@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: uhostserver
+# Cookbook Name:: uhostapi
 # Recipe:: api
 #
 # Copyright 2014 Mark C. Allen
@@ -55,9 +55,6 @@ end
 #  end
 #end
 
-#package "nodejs"
-#package "mongodb"
-
 include_recipe "nodejs"
 include_recipe "mongodb"
 
@@ -108,6 +105,7 @@ bash "copy-uhostadmin" do
   chown uhost:uhost /srv/uhostappserver/current/chef/.chef/uhostadmin.pem
   chmod 0600 /srv/uhostappserver/current/chef/.chef/uhostadmin.pem
   EOH
+  only_if { ::File.exists?("/etc/chef-server/uhostadmin.pem") }
 end
 
 bash "config-chef" do
@@ -117,6 +115,7 @@ bash "config-chef" do
   cd cookbooks/uhost
   su uhost -c 'berks install && berks upload --ssl-verify=false --no-freeze'
   EOH
+  only_if { ::File.exists?("/srv/uhostappserver/current/chef/.chef/uhostadmin.pem") }
 end
 
 template "uhostappserver.upstart.conf" do
@@ -133,40 +132,3 @@ service "uhostappserver" do
   action [:start, :enable]
 end
 
-include_recipe "nginx"
-
-sitename = servername
-
-hosts = Array.new
-hosts.push sitename
-
-template "/etc/nginx/sites-available/"+sitename+".conf" do
-  source "uhostappserver-nginx-http.erb"
-  mode 0644
-  owner "root"
-  group "root"
-  variables({
-    :servername => servername,
-    :host => hosts
-  })
-end
-
-template "/etc/nginx/sites-available/ssl-"+sitename+".conf" do
-  source "uhostappserver-nginx-https.erb"
-  mode 0644
-  owner "root"
-  group "root"
-  variables({
-    :servername => servername,
-    :host => hosts
-  })
-end
-
-link "/etc/nginx/sites-enabled/"+sitename+".conf" do
-  to "/etc/nginx/sites-available/"+sitename+".conf"
-end
-
-link "/etc/nginx/sites-enabled/ssl-"+sitename+".conf" do
-  to "/etc/nginx/sites-available/ssl-"+sitename+".conf"
-  notifies  :restart, "service[nginx]", :immediately
-end

@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: uhostserver
+# Cookbook Name:: uhostapi
 # Recipe:: default
 #
-# Copyright 2014 Mark C. Allen
+# Copyright 2015 Mark C. Allen
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -17,7 +17,7 @@
 #    under the License.
 #
 
-log "Installing chef server on: " + Chef::Config[:node_name]
+log "Installing uhost api on: " + Chef::Config[:node_name]
 
 include_recipe "apt"
 
@@ -45,9 +45,7 @@ ohai "reload" do
   action :reload
 end
 
-include_recipe "uhostchef11server::chefserver"
-include_recipe "uhostchef11server::nginx"
-include_recipe "uhostchef11server::uhostadmin"
-include_recipe "uhostchef11server::users"
-include_recipe "uhostchef11server::api"
+include_recipe "uhostapi::users"
+include_recipe "uhostapi::api"
+include_recipe "uhostapi::nginx"
 

@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.hostname = "uhostchef11server.getuhost.org"
+  config.vm.hostname = "uhostapi.getuhost.org"
 
   # Set the version of chef to install using the vagrant-omnibus plugin
   config.omnibus.chef_version = :latest
@@ -78,7 +78,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     chef.run_list = [
-        "recipe[uhostchef11server::default]"
+        "recipe[uhostapi::default]"
     ]
     
     chef.custom_config_path = "Vagrantfile.chef"

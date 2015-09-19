@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: uhostserver
+# Cookbook Name:: uhostapi
 # Recipe:: users
 #
 # Copyright 2014 Mark C. Allen
