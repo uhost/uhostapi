@@ -78,6 +78,7 @@ template "uhostappserver.local.json" do
     :domainname => node["uhostappserver"]["domainname"],
     :awsAccessKey => "",
     :awsSecretKey => "",
+    :awsRegion => "",
     :hostedzoneid => "",
     :imageid => "ami-67526757",
     :securitygroupids => "[]",
