@@ -89,4 +89,4 @@ kitchen converge
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Mark C Allen (<mark@markcallen.com>)
