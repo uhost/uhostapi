@@ -115,6 +115,8 @@ bash "config-chef" do
   su uhost -c 'knife upload .'
   cd cookbooks/uhost
   su uhost -c 'berks install && berks upload --ssl-verify=false --no-freeze'
+  cd cookbooks/uhost-windows
+  su uhost -c 'berks install && berks upload --ssl-verify=false --no-freeze'
   EOH
   only_if { ::File.exists?("/srv/uhostappserver/current/chef/.chef/uhostadmin.pem") }
 end
