@@ -36,6 +36,7 @@ end
 deploy_revision "/srv/uhostappserver" do
   migrate false
   repo "https://github.com/uhost/uhostappserver.git"
+  revision "gce"
   symlink_before_migrate.clear
   create_dirs_before_symlink.clear
   purge_before_symlink.clear
