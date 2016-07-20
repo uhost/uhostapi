@@ -13,3 +13,5 @@ end
 %w{ apt users nginx hostname certificate hostsfile nodejs mongodb redisio }.each do |cb|
   depends cb
 end
+
+depends "ohai", "< 4.0.0"
